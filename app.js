@@ -48,6 +48,24 @@ app.get("/compose", function(req, res){
   res.render("compose");
 })
 
+app.get("/posts/:postName", function(req, res){
+  const lowerpostName = _.lowerCase(req.params.postName);
+  Post.find({}, function(err, foundPosts){
+    if(!err){
+      foundPosts.forEach(function(post){
+        const lowerpostTitle = _.lowerCase(post.title);
+        if(lowerpostName === lowerpostTitle){
+          res.render("post", {title: _.capitalize(post.title), content: _.capitalize(post.content)});
+        } else{
+          console.log("Don't know what wrong!");
+        }
+      })
+    }
+  })
+
+})
+
+
 app.post("/compose", function(req, res){
   const title = req.body.myTitle;
   const content = req.body.myText;
@@ -56,23 +74,15 @@ app.post("/compose", function(req, res){
   res.redirect("/");
 })
 
-app.get("/posts/:postName", function(req, res){
-  const lowerpostName = _.lowerCase(req.params.postName);
-  Post.find({}, function(err, foundPosts){
+app.post("/delete", function(req, res){
+  const postID = req.body.trashButton;
+  Post.findByIdAndRemove(postID, function(err){
     if(!err){
-      foundPosts.forEach(function(post){
-        const lowerpostTitle = _.lowerCase(post.title);
-        if(lowerpostName === lowerpostTitle){
-          res.render("post", {title: post.title, content: post.content});
-        } else{
-          console.log("brooo");
-        }
-      })
+      console.log("Successfully removed post.");
+      res.redirect("/");
     }
   })
-
 })
-
 
 
 

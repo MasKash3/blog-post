@@ -33,3 +33,26 @@
 	font-size: 12px;
   color: #fff;
 }
+
+.trash{
+  font-size: 40%;
+  color: grey;
+  opacity: 0.5;
+}
+
+.trash:hover{
+  font-size: 50%;
+  color: red;
+  opacity: inherit;
+}
+
+.trashBtn{
+  border: none;
+  position: inherit;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.btnForm{
+  display: inline-flex;
+}
