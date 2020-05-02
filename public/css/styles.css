@@ -53,6 +53,11 @@
   background-color: #fff;
 }
 
+.composeBtn:hover{
+  background-color: #4f5162;
+  color: #fff;
+}
+
 .btnForm{
   display: inline-flex;
 }

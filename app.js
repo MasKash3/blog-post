@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://admin-jordan:J@ckalANDc0@cluster0-8ax2w.mongodb.net/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 const postSchema = {
   title: {
@@ -69,7 +69,7 @@ app.get("/posts/:postName", function(req, res){
 app.post("/compose", function(req, res){
   const title = req.body.myTitle;
   const content = req.body.myText;
-  const post = new Post({title: title, content: content});
+  const post = new Post({title: _.capitalize(title), content: _.capitalize(content)});
   post.save();
   res.redirect("/");
 })
@@ -86,6 +86,6 @@ app.post("/delete", function(req, res){
 
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("Server started on port 3000");
 });
