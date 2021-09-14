@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-jordan:J@ckalANDc0@cluster0-8ax2w.mongodb.net/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb+srv:CREDENTIALS", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 const postSchema = {
   title: {
